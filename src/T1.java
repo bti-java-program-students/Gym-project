@@ -3,5 +3,6 @@ public class T1 {
         System.out.println();
         System.out.println("Laba diena");
         System.out.println("Dirbam");
+        System.out.println("Testuojam");
     }
 }
