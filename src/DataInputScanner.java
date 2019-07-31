@@ -13,6 +13,8 @@ public class DataInputScanner {
             int personHeight = input.nextInt();
             System.out.println(personHeight);
 
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 }
