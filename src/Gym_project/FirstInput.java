@@ -1,16 +1,28 @@
+package Gym_project;
+
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 
+
 public class FirstInput {
+
+    String name, familyName;
+    Double age, height, weight;
+    BMIndex bmi = new BMIndex();
 
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
         File clientDetails = new File("Clients.txt");
         PrintWriter pw = new PrintWriter(new FileWriter(clientDetails, true));
+        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
 
-//        for (int i = 0; i < 6; i++) {
+        System.out.println("Enter date, format dd-mm-yyyy: ");
+        String date = scan.nextLine();
+        pw.println("Date: " + date);
 
         System.out.println("Enter name: ");
         String name = scan.next();
@@ -21,7 +33,8 @@ public class FirstInput {
         pw.println("Family name: " + familyName);
 
         System.out.println("Enter weight: ");
-        double weight = scan.nextDouble();
+        String datWeight = scan.next();
+        double weight = Double.parseDouble(datWeight);
         pw.println("Weight, kg : " + weight);
 
         boolean repeat = false;
@@ -34,23 +47,23 @@ public class FirstInput {
             } catch (InputMismatchException ex) {
                 System.err.println("Invalid age please enter a whole number.");
                 scan.next();
-                continue;
             }
         } while (repeat == false);
         do {
             try {
                 System.out.println("Enter height: ");
-                double height = scan.nextDouble();
+                String datHeight = scan.next();
+                double height = Double.parseDouble(datHeight);
                 pw.println("Height, m : " + height);
                 repeat = false;
-            } catch (InputMismatchException | MissingFormatArgumentException ex) {
+            } catch (InputMismatchException | MissingFormatArgumentException | NumberFormatException ex) {
                 System.err.println("Invalid height please enter a decimal.");
                 scan.next();
-                continue;
             }
         } while (repeat);
 
         pw.close();
         scan.close();
     }
+
 }

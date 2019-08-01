@@ -1,3 +1,5 @@
+package Gym_project;
+
 import java.io.*;
 
 public class File_Copier {
@@ -10,7 +12,7 @@ public class File_Copier {
 
     private static void copyLineByLine() {
         try (BufferedReader inputStream =
-                     new BufferedReader(new FileReader("source.txt"));
+                     new BufferedReader(new FileReader("Clients.txt"));
              PrintWriter outputStream =
                      new PrintWriter(new FileWriter("destination_line.txt"))) {
             String dataBox;
@@ -23,7 +25,7 @@ public class File_Copier {
     }
 
     private static void copyCharByChar() {
-        try (FileReader inputCharStream = new FileReader("source.txt");
+        try (FileReader inputCharStream = new FileReader("Clients.txt");
              FileWriter outputCharStream = new FileWriter("destination_char.txt")) {
             int dataBox;
             while ((dataBox = inputCharStream.read()) != -1) {
@@ -36,7 +38,7 @@ public class File_Copier {
     }
 
     private static void copyByteByByte() {
-        try (FileInputStream fis = new FileInputStream("source.txt");
+        try (FileInputStream fis = new FileInputStream("Clients.txt");
              FileOutputStream fos = new FileOutputStream("destination.txt")) {
             int dataBox;
             while ((dataBox = fis.read()) != -1) {  //read from file
