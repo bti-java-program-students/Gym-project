@@ -1,3 +1,5 @@
+package TEMP;
+
 import java.util.Scanner;
 
 public class DataInputScanner {
