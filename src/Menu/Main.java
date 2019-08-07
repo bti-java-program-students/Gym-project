@@ -35,7 +35,7 @@ public class Main {
                             break;
                         case "3":
                             System.out.println("pasirinkta 3 - duomenu issaugojimas");
-//                            oldCustomer ();
+//                            dataInOut ();
                             break;
                         default:
                             System.out.println("Neteisingas pasirinkimas. Bandykite dar karta =))");
