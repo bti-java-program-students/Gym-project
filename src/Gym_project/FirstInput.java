@@ -8,14 +8,14 @@ import java.text.MessageFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class FirstInput {
+public class FirstInput{
 
     String name, familyName, eMail;
     Double phoneNo;
     int id;
 
 
-    public static void main(String[] args) throws IOException {
+    public static void inputData() throws IOException {
         Scanner scan = new Scanner(System.in);
         File clientDetails = new File("Clients.csv");
         PrintWriter pw = new PrintWriter(new FileWriter(clientDetails, true));
