@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import static Gym_project.Main.startProgram;
 
 public class FirstInput {
 
@@ -14,15 +15,14 @@ public class FirstInput {
     Double phoneNo;
     int id;
 
-
-    public static void main(String[] args) throws IOException {
+    public static void newInput() throws IOException, InterruptedException {
         Scanner scan = new Scanner(System.in);
         File clientDetails = new File("Clients.csv");
         PrintWriter pw = new PrintWriter(new FileWriter(clientDetails, true));
 
         System.out.println("Enter name: ");
         String name = scan.next();
-        while(!name.matches("[a-zA-Z ,]+")){
+        while (!name.matches("[a-zA-Z ,]+")) {
             System.out.println("Please retype name");
             name = scan.next();
         }
@@ -62,8 +62,10 @@ public class FirstInput {
         System.out.println("Customer id = " + id);
         pw.println("Client id = " + id);
 
-        scan.close();
+//        scan.close();
         pw.close();
-
+        System.out.println("Duomenys įvesti, grįžtu į pradžią .....");
+        Thread.sleep(2000);
+        startProgram();
     }
 }

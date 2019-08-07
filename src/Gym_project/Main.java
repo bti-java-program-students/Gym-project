@@ -1,9 +1,13 @@
-package Menu;
+package Gym_project;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        startProgram();
+    }
+
+    static void startProgram() {
         String IDnumber;
         try (Scanner input = new Scanner(System.in)) {
 
@@ -39,14 +43,12 @@ public class Main {
                             break;
                         default:
                             System.out.println("Neteisingas pasirinkimas. Bandykite dar karta =))");
-
                     }
-
 //                    oldCustomer();
                     break;
                 case "2":
                     System.out.println("pasirinkta 2 - naujas klientas");
-//                    firstInput();
+                    FirstInput.newInput();
                     break;
                 case "3":
                     System.out.println("pasirinkta 3 - programos darbas baigtas.");
@@ -55,11 +57,10 @@ public class Main {
                 default:
                     System.out.println("Neteisingas pasirinkimas. Bandykite dar karta =))");
             }
-
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 }
+
+
