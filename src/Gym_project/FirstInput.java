@@ -1,69 +1,69 @@
 package Gym_project;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.MessageFormat;
 import java.util.InputMismatchException;
-import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
-
 
 public class FirstInput {
 
-    String name, familyName;
-    Double age, height, weight;
-    BMIndex bmi = new BMIndex();
+    String name, familyName, eMail;
+    Double phoneNo;
+    int id;
+
 
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
-        File clientDetails = new File("Clients.txt");
+        File clientDetails = new File("Clients.csv");
         PrintWriter pw = new PrintWriter(new FileWriter(clientDetails, true));
-        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-
-        System.out.println("Enter date, format dd-mm-yyyy: ");
-        String date = scan.nextLine();
-        pw.println("Date: " + date);
 
         System.out.println("Enter name: ");
         String name = scan.next();
+        while(!name.matches("[a-zA-Z ,]+")){
+            System.out.println("Please retype name");
+            name = scan.next();
+        }
         pw.println("Name: " + name);
 
         System.out.println("Enter family name: ");
         String familyName = scan.next();
         pw.println("Family name: " + familyName);
 
-        System.out.println("Enter weight: ");
-        String datWeight = scan.next();
-        double weight = Double.parseDouble(datWeight);
-        pw.println("Weight, kg : " + weight);
+        try {
+            System.out.println("Enter phone No: ");
+            String datPhone = scan.next();
+            double phoneNo = Double.parseDouble(datPhone);
+            pw.println("Phone No : " + phoneNo);
+        } catch (InputMismatchException ex) {
+            System.err.println("Invalid age please enter a whole number.");
+            scan.next();
+        }
+        try {
+            System.out.println("Enter email: ");
+            String eMail = scan.next();
+            String mail = String.format(eMail);
+            pw.println("Email : " + eMail);
+        } catch (InputMismatchException ex) {
+            System.err.println("Invalid eMail please enter a correct one");
+            scan.next();
+        }
 
-        boolean repeat = false;
-        do {
-            try {
-                System.out.println("Enter age: ");
-                int age = scan.nextInt();
-                pw.println("Age: " + age);
-                repeat = true;
-            } catch (InputMismatchException ex) {
-                System.err.println("Invalid age please enter a whole number.");
-                scan.next();
-            }
-        } while (repeat == false);
-        do {
-            try {
-                System.out.println("Enter height: ");
-                String datHeight = scan.next();
-                double height = Double.parseDouble(datHeight);
-                pw.println("Height, m : " + height);
-                repeat = false;
-            } catch (InputMismatchException | MissingFormatArgumentException | NumberFormatException ex) {
-                System.err.println("Invalid height please enter a decimal.");
-                scan.next();
-            }
-        } while (repeat);
+        int idd = (int) (Math.random() * 10000);
+        String id = null;
+        try {
+            id = MessageFormat.format("{0}{1}{2}", name.charAt(0), familyName.charAt(0), Integer.toString(idd));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        pw.close();
+        System.out.println("Customer id = " + id);
+        pw.println("Client id = " + id);
+
         scan.close();
-    }
+        pw.close();
 
+    }
 }
