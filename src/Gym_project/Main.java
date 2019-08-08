@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         startProgram();
+        clientCaller();
     }
 
     static void startProgram() {
@@ -31,7 +32,7 @@ public class Main {
                     switch (MenuOldCustomer) {
                         case "1":
                             System.out.println("pasirinkta 1 - duomenu suvedimas");
-//                            oldCustomer ();
+                            clientCaller();
                             break;
                         case "2":
                             System.out.println("pasirinkta 2 - KMI skaiciavimas");
@@ -59,6 +60,25 @@ public class Main {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+    private static void clientCaller() {
+        System.out.println("Pirmą kartą klube: ");
+        System.out.println("T");
+        System.out.println("N (dar neveik)");
+        Scanner input = new Scanner(System.in);
+        char choice = input.next().charAt(0);
+        switch (choice){
+            case'T':
+                new NewClient().NewClientCaller();
+                break;
+            case 'N':
+                System.out.println();
+                clientCaller();
+                break;
+            default:
+                System.out.println("neišsidirbinėk");
+                clientCaller();
         }
     }
 }
