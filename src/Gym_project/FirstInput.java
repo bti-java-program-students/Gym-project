@@ -9,7 +9,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import static Gym_project.Main.startProgram;
 
-public class FirstInput {
+public class FirstInput extends Client{
 
     String name, familyName, eMail;
     Double phoneNo;
