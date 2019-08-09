@@ -20,13 +20,13 @@ public class NewClient extends Client {
         this.setId(scanner.nextLine());
         System.out.println("enter time spent in minutes: ");
         this.setTimeSpent(scanner.nextInt());
-        System.out.println("enter height: ");
+        System.out.println("enter height in cm: ");
         this.setHeight(scanner.nextDouble());
         System.out.println("enter weight: ");
         this.setWeight(scanner.nextDouble());
-        this.setBMI((100*100*this.getHeight())/(this.getHeight()*this.getWeight()));
+        this.setBMI((this.getWeight())/((this.getHeight()*this.getHeight())/10000));
         System.out.println("BMI: " + getBMI());
-        File file = new File (getId() + ".txt");
+        File file = new File (getId() + ".csv");
         try{
             if (!file.exists()){
                 file.createNewFile();
