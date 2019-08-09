@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import static Gym_project.Main.startProgram;
+import static Gym_project.MenuStart.startProgram;
 
 public class FirstInput extends Client{
 
