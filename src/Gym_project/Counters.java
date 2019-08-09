@@ -1,16 +1,20 @@
 package Gym_project;
 
-public class Counters {
-    private static void bodyMassIndexCounter() {
+import java.util.Scanner;
 
-        double height = 0;
-        double weight = 0;
+public class Counters {
+    static void bodyMassIndexCounter() {
+        Scanner input = new Scanner(System. in);
+        System.out.println("Įrašykite ūgį metrais");
+        double height = input.nextDouble();
+        System.out.println("Įrašykite svorį kilogramais");
+        double weight = input.nextDouble();
         double bmiCounter = weight / (height * height);
         System.out.println();
         System.out.format("Kliento KMI - " + "%.2f%n", bmiCounter);
         if (bmiCounter < 18.5) {
             System.out.println("KMI yra mažesnis už normą, " +
-                    "rekomenduojama pasitarti su mitybos specialistu, mažinti fizinį aktyvumą ");
+                    "rekomenduojama pasitarti su mitybos specialistu, koreguoti fizinį aktyvumą ");
         }
         if (18.5 < bmiCounter && bmiCounter < 25) {
             System.out.println("KMI yra normos ribose, " +
