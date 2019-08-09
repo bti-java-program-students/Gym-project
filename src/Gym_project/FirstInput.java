@@ -7,13 +7,34 @@ import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import static Gym_project.MenuStart.startProgram;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class FirstInput extends Client{
+import static Gym_project.Main.startProgram;
+import static java.lang.String.format;
+
+public class FirstInputValid {
 
     String name, familyName, eMail;
     Double phoneNo;
     int id;
+    public static boolean isValidEmail(String eMail){
+        String eMailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(eMailRegex);
+        if (eMail == null)
+            return false;
+        return pat.matcher(eMail).matches();
+    }
+
+    public static boolean isValidTelNumber(String datPhone){
+        Pattern p = Pattern.compile("(8/370)?[6][0-9]{7}");
+        Matcher m = p.matcher(datPhone);
+        return (m.find() && m.group().equals(datPhone));
+    }
 
     public static void newInput() throws IOException, InterruptedException {
         Scanner scan = new Scanner(System.in);
@@ -30,22 +51,36 @@ public class FirstInput extends Client{
 
         System.out.println("Enter family name: ");
         String familyName = scan.next();
+        while (!familyName.matches("[a-zA-Z ,]+")) {
+            System.out.println("Please retype family name");
+            familyName = scan.next();
+        }
         pw.println("Family name: " + familyName);
 
         try {
-            System.out.println("Enter phone No: ");
+            System.out.println("Enter mobile phone No (Country code, space , number): ");
             String datPhone = scan.next();
-            double phoneNo = Double.parseDouble(datPhone);
-            pw.println("Phone No : " + phoneNo);
+            String phone = format(datPhone);
+            while (!isValidTelNumber(datPhone)) {
+                System.out.println("Invalid entry retype phone number");
+                pw.println("Email : " + datPhone);
+                datPhone = scan.next();
+            }
+            pw.println("Phone No : " + datPhone);
         } catch (InputMismatchException ex) {
-            System.err.println("Invalid age please enter a whole number.");
+            System.err.println("Error.");
             scan.next();
         }
         try {
             System.out.println("Enter email: ");
             String eMail = scan.next();
-            String mail = String.format(eMail);
-            pw.println("Email : " + eMail);
+            String mail = format(eMail);
+            while (!isValidEmail(eMail)) {
+                System.out.println("Invalid entry please retype email");
+                pw.println("Email : " + eMail);
+                eMail = scan.next();
+            }
+
         } catch (InputMismatchException ex) {
             System.err.println("Invalid eMail please enter a correct one");
             scan.next();
