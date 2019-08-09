@@ -27,7 +27,6 @@ public class NewClient extends Client {
         this.setBMI((100*100*this.getHeight())/(this.getHeight()*this.getWeight()));
         System.out.println("BMI: " + getBMI());
         File file = new File (getId() + ".txt");
-        Main.startProgram();
         try{
             if (!file.exists()){
                 file.createNewFile();
