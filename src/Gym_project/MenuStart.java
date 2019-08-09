@@ -33,24 +33,4 @@ public class MenuStart {
             ex.printStackTrace();
         }
     }
-
-//    private static void clientCaller() {
-//        System.out.println("Pirmą kartą klube: ");
-//        System.out.println("T");
-//        System.out.println("N (dar neveik)");
-//        Scanner input = new Scanner(System.in);
-//        char choice = input.next().charAt(0);
-//        switch (choice) {
-//            case 'T':
-//                new NewClient().NewClientCaller();
-//                break;
-//            case 'N':
-//                System.out.println();
-//                clientCaller(); // metodas, kai ne pirmą kartą kube
-//                break;
-//            default:
-//                System.out.println("neišsidirbinėk");
-//                clientCaller();
-//        }
-//    }
 }
