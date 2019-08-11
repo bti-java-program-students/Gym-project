@@ -1,71 +1,93 @@
 package Gym_project;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.MessageFormat;
-import java.util.InputMismatchException;
 import java.util.Scanner;
-import static Gym_project.Main.startProgram;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import static Gym_project.MenuStart.startProgram;
+import static java.lang.String.format;
 
-public class FirstInput extends Client{
+class FirstInput {
 
-    String name, familyName, eMail;
-    Double phoneNo;
-    int id;
+    public static boolean isValidEmail(String eMail){
+        String eMailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
 
-    public static void newInput() throws IOException, InterruptedException {
-        Scanner scan = new Scanner(System.in);
-        File clientDetails = new File("Clients.csv");
-        PrintWriter pw = new PrintWriter(new FileWriter(clientDetails, true));
+        Pattern pat = Pattern.compile(eMailRegex);
+        if (eMail == null)
+            return false;
+        return pat.matcher(eMail).matches();
+    }
+    public static boolean isValidTelNumber(String datPhone){
+        Pattern p = Pattern.compile("(8/370)?[6][0-9]{7}");
+        Matcher m = p.matcher(datPhone);
+        return (m.find() && m.group().equals(datPhone));
+    }
 
-        System.out.println("Enter name: ");
-        String name = scan.next();
-        while (!name.matches("[a-zA-Z ,]+")) {
-            System.out.println("Please retype name");
-            name = scan.next();
-        }
-        pw.println("Name: " + name);
-
-        System.out.println("Enter family name: ");
-        String familyName = scan.next();
-        pw.println("Family name: " + familyName);
-
-        try {
-            System.out.println("Enter phone No: ");
+    static void newInput() {
+        try(Scanner scan = new Scanner(System.in, "UTF-8")) {
+            System.out.println("Įveskite vardą: ");
+            String name = scan.next();
+            while (!name.matches("[a-zA-Z ĄąČčĘęĖėĮįŠšŲųŪūŽž]+")) {
+                System.out.println("Blogai įvestas vardas, prašome pakartoti");
+                name = scan.next();
+            }
+            System.out.println("Įveskite pavardę: ");
+            String familyName = scan.next();
+            while (!familyName.matches("[a-zA-Z ĄąČčĘęĖėĮįŠšŲųŪūŽž]+")) {
+                System.out.println("Blogai įvesta pavardė, prašome pakartoti");
+                familyName = scan.next();
+            }
+            System.out.println("Įveskite telefono Nr. formatu: 370 61234567: ");
             String datPhone = scan.next();
-            double phoneNo = Double.parseDouble(datPhone);
-            pw.println("Phone No : " + phoneNo);
-        } catch (InputMismatchException ex) {
-            System.err.println("Invalid age please enter a whole number.");
-            scan.next();
-        }
-        try {
-            System.out.println("Enter email: ");
+            while (!isValidTelNumber(datPhone)) {
+                System.out.println("Blogai įvestas numeris, prašome pakartoti");
+                datPhone = scan.next();
+            }
+            System.out.println("Įveskite savo elektroninio pašto adresą: ");
             String eMail = scan.next();
-            String mail = String.format(eMail);
-            pw.println("Email : " + eMail);
-        } catch (InputMismatchException ex) {
-            System.err.println("Invalid eMail please enter a correct one");
-            scan.next();
+            String mail = eMail;
+            while (!isValidEmail(eMail)) {
+                System.out.println("Blogai įvestas elektroninis pašto adresas, prašome pakartoti");
+                eMail = scan.next();
+            }
+            int idd = (int) (Math.random() * 10000);
+            String id = MessageFormat.format("{0}{1}{2}", name.charAt(0), familyName.charAt(0), Integer.toString(idd));
+            System.out.println("Jūsų ID: " + id + " ,prašome jį išsisaugoti");
+
+            StringBuilder head = new StringBuilder();
+            head.append("Id");
+            head.append(",");
+            head.append("Name");
+            head.append(",");
+            head.append("Family Name");
+            head.append(",");
+            head.append("Phone");
+            head.append(",");
+            head.append("Email");
+
+            StringBuilder clientInfo = new StringBuilder();
+            clientInfo.append(id);
+            clientInfo.append(',');
+            clientInfo.append(name);
+            clientInfo.append(',');
+            clientInfo.append(familyName);
+            clientInfo.append(',');
+            clientInfo.append(datPhone);
+            clientInfo.append(',');
+            clientInfo.append(mail);
+
+            String path = "ClientsRegistred.csv";
+
+            Writer.WriteInfoToCSV(head, clientInfo, path);
+
+            System.out.println("Duomenys įvesti, grįžtu į pradžią .....");
+            Thread.sleep(2000);
+            startProgram();
+        }   catch (Exception ex){
+            System.out.println("That's your problem---->" + ex);
         }
-
-        int idd = (int) (Math.random() * 10000);
-        String id = null;
-        try {
-            id = MessageFormat.format("{0}{1}{2}", name.charAt(0), familyName.charAt(0), Integer.toString(idd));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Customer id = " + id);
-        pw.println("Client id = " + id);
-
-//        scan.close();
-        pw.close();
-        System.out.println("Duomenys įvesti, grįžtu į pradžią .....");
-        Thread.sleep(2000);
-        startProgram();
     }
 }
