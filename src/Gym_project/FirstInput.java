@@ -49,7 +49,7 @@ class FirstInput {
             System.out.println("Įveskite savo elektroninio pašto adresą: ");
             String eMail = scan.next();
             while (!isValidEmail(eMail)) {
-                System.out.println("Blogai įvestas elektroninis pašto adresas, prašome pakartoti");
+                System.out.println("Blogai įvestas elektroninio pašto adresas, prašome pakartoti");
                 eMail = scan.next();
             }
             int idd = (int) (Math.random() * 10000);
