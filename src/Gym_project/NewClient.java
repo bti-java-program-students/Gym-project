@@ -34,6 +34,7 @@ class NewClient {
             head.append("weight");
             head.append(',');
             head.append("BMI");
+            head.append(',');
             head.append("TimeSpent");
 
             StringBuilder clientInfo = new StringBuilder();
