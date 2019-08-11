@@ -40,7 +40,7 @@ class FirstInput {
                 System.out.println("Blogai įvesta pavardė, prašome pakartoti");
                 familyName = scan.next();
             }
-            System.out.println("Įveskite telefono Nr. formatu: 370 61234567: ");
+            System.out.println("Įveskite telefono Nr. formatu: 61234567: ");
             String datPhone = scan.next();
             while (!isValidTelNumber(datPhone)) {
                 System.out.println("Blogai įvestas numeris, prašome pakartoti");
