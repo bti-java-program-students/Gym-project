@@ -48,7 +48,6 @@ class FirstInput {
             }
             System.out.println("Įveskite savo elektroninio pašto adresą: ");
             String eMail = scan.next();
-            String mail = eMail;
             while (!isValidEmail(eMail)) {
                 System.out.println("Blogai įvestas elektroninis pašto adresas, prašome pakartoti");
                 eMail = scan.next();
@@ -77,7 +76,7 @@ class FirstInput {
             clientInfo.append(',');
             clientInfo.append(datPhone);
             clientInfo.append(',');
-            clientInfo.append(mail);
+            clientInfo.append(eMail);
 
             String path = "ClientsRegistred.csv";
 
