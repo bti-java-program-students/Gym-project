@@ -21,7 +21,7 @@ class FirstInput {
         return pat.matcher(eMail).matches();
     }
     public static boolean isValidTelNumber(String datPhone){
-        Pattern p = Pattern.compile("(8/370)?[6][0-9]{7}");
+        Pattern p = Pattern.compile("(370)?[3-6][0-9]{7}");
         Matcher m = p.matcher(datPhone);
         return (m.find() && m.group().equals(datPhone));
     }
@@ -40,7 +40,7 @@ class FirstInput {
                 System.out.println("Blogai įvesta pavardė, prašome pakartoti");
                 familyName = scan.next();
             }
-            System.out.println("Įveskite telefono Nr. formatu: 61234567: ");
+            System.out.println("Įveskite telefono Nr. formatu: 37061234567: ");
             String datPhone = scan.next();
             while (!isValidTelNumber(datPhone)) {
                 System.out.println("Blogai įvestas numeris, prašome pakartoti");
