@@ -1,6 +1,6 @@
 package Gym_project;
 
-public class Counters{
+class Counters{
     static double bodyMassIndexCounter(double height, double weight) {
         double BMI = (10000*weight/(height*height));
 
@@ -23,6 +23,6 @@ public class Counters{
             System.out.println("KMI gerokai viršija normą, primygtinai " +
                     "rekomenduojama pasikonsultuoti su mitybos specialistu ir sveikatingumo treneriu ");
         }
-            return BMI;
+        return BMI;
     }
 }
