@@ -1,13 +1,46 @@
 package Gym_project;
 
-class Client {
+abstract class Client {
     private String id;
-    private int timeSpent;
+    private String name;
+    private String surname;
+    private String email;
+    private String phone;
     private double height;
     private double weight;
     private double BMI;
 
-    Client() {}
+    String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    String getSurname() {
+        return surname;
+    }
+
+    void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    String getEmail() {
+        return email;
+    }
+
+    void setEmail(String email) {
+        this.email = email;
+    }
+
+    String getPhone() {
+        return phone;
+    }
+
+    void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     String getId() {
         return id;
@@ -15,14 +48,6 @@ class Client {
 
     void setId(String id) {
         this.id = id;
-    }
-
-    double getTimeSpent() {
-        return timeSpent;
-    }
-
-    void setTimeSpent(int timeSpent) {
-        this.timeSpent = timeSpent;
     }
 
     double getHeight() {

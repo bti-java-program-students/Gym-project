@@ -1,31 +1,27 @@
 package Gym_project;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 class Writer {
-    static void WriteInfoToCSV(StringBuilder head, StringBuilder clientInfo, String path){
-        if (new File(path).isFile()) {
-            try (FileOutputStream fos = new FileOutputStream(path, true)) {
-                PrintWriter write = new PrintWriter(fos);
-                write.println(clientInfo);
-                write.flush();
-                write.close();
+    static void writeToClientsCSV(String path, String head, String clientInfo) {
+        if (!new File(path).isFile()) {
+            try (FileOutputStream fos = new FileOutputStream(path, true);
+                 PrintWriter writeToCSV = new PrintWriter(fos)) {
+                writeToCSV.println(head);
+                writeToCSV.println(clientInfo);
+                writeToCSV.flush();
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         } else {
-            try (FileOutputStream fos = new FileOutputStream(path, true)) {
-                PrintWriter write = new PrintWriter(fos);
-                write.println(head);
-                write.println(clientInfo);
-                write.flush();
-                write.close();
+            try (FileOutputStream fos = new FileOutputStream(path, true);
+                 PrintWriter writeToCSV = new PrintWriter(fos)) {
+                writeToCSV.println(clientInfo);
+                writeToCSV.flush();
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
 }
+

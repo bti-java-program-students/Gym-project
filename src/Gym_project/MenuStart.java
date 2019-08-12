@@ -3,7 +3,7 @@ package Gym_project;
 import java.util.Scanner;
 
 class MenuStart {
-    static void startProgram() {
+    void startProgram() {
         try (Scanner input = new Scanner(System.in)) {
             System.out.println("Labas! Ir vėl nauja puiki diena!");
             System.out.println("Esamas klientas - spauskite 1");
@@ -13,11 +13,11 @@ class MenuStart {
             switch (Menu) {
                 case 1:
                     System.out.println("Pasirinkta 1 - Esamas klientas");
-                    NewClient.FirstTimeInGym();
+                    new OldClient().gymTracker();
                     break;
                 case 2:
                     System.out.println("Pasirinkta 2 - Naujas klientas");
-                    FirstInput.newInput();
+                    new NewClient().newClientRegitration();
                     break;
                 case 3:
                     System.out.println("Pasirinkta 3 - Programa baigė darbą");

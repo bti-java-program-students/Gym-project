@@ -1,12 +1,15 @@
 package Gym_project;
 
-class Counters{
-    static double bodyMassIndexCounter(double height, double weight) {
-        double BMI = (10000*weight/(height*height));
+import java.text.DecimalFormat;
 
-        System.out.println();
-        System.out.format("Kliento KMI - " + "%.2f%n", BMI);
+class Counters implements AbleToCountBMI {
 
+    @Override
+    public double calcBMI(double height, double weight) {
+        DecimalFormat df = new DecimalFormat("##.##");
+        double BMI = 10000 * weight / (height * height);
+        BMI = Double.parseDouble(df.format(BMI));
+        System.out.println("Kliento KMI - " + BMI);
         if (BMI <= 18.5) {
             System.out.println("KMI yra mažesnis už normą, " +
                     "rekomenduojama pasitarti su mitybos specialistu, koreguoti fizinį aktyvumą ");
@@ -15,7 +18,7 @@ class Counters{
             System.out.println("KMI yra normos ribose, " +
                     "mitybos ir aktyvumo santykis - optimalus");
         }
-        if (25 <= BMI && BMI< 30) {
+        if (25 <= BMI && BMI < 30) {
             System.out.println("BMI nežymiai viršija normą, rekomenduojama pasitarti su " +
                     "mitybos specialistu ir padidinti fizinį aktyvumą ");
         }
