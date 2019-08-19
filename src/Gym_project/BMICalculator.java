@@ -2,7 +2,7 @@ package Gym_project;
 
 import java.text.DecimalFormat;
 
-class Counters{
+class BMICalculator {
 
  public double calcBMI(double height, double weight) {
         DecimalFormat df = new DecimalFormat("##.##");

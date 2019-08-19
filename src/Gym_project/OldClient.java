@@ -18,12 +18,12 @@ class OldClient extends Client{
             System.out.println("Įrašykite kiek laiko sportavote, min: ");
             int time = scanner.nextInt();
             String height;
-            height = new Reader().getClientHeight(path,getId());
+            height = new ReaderWriter().getClientHeight(path,getId());
             this.setHeight(Double.parseDouble(height));
             System.out.println("Įrašykite svorį: ");
             this.setWeight(scanner.nextDouble());
             double BMI;
-            BMI = new Counters().calcBMI(this.getHeight(), this.getWeight());
+            BMI = new BMICalculator().calcBMI(this.getHeight(), this.getWeight());
             this.setBMI(BMI);
 
             List<String> headList = Arrays.asList(
@@ -35,8 +35,8 @@ class OldClient extends Client{
                     String.valueOf(this.getWeight()), String.valueOf(this.getBMI()), String.valueOf(time));
             String clientInfo = String.join(",", oldClientInfoList);
 
-            new Writer();
-            Writer.writeToClientsCSV(path, head, clientInfo);
+            new ReaderWriter();
+            ReaderWriter.writeToClientsCSV(path, head, clientInfo);
 
         } catch (Exception ex) {
             System.out.println("That's your problem---->" + ex);

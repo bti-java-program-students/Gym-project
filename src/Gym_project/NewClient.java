@@ -59,7 +59,7 @@ class NewClient extends Client{
             this.setHeight(scan.nextDouble());
             System.out.println("Įrašykite svorį, kg: ");
             this.setWeight(scan.nextDouble());
-            double BMI = new Counters().calcBMI(this.getHeight(), this.getWeight());
+            double BMI = new BMICalculator().calcBMI(this.getHeight(), this.getWeight());
             this.setBMI(BMI);
             int idd = (int) (Math.random() * 10000);
             this.setId(MessageFormat.format("{0}{1}{2}", this.getName().charAt(0), this.getSurname().charAt(0), Integer.toString(idd)));
@@ -85,9 +85,9 @@ class NewClient extends Client{
         String clientInfo = String.join(",", newClientInfoList);
         String dirPath = "All_Clients/" + this.getId();
         String path = dirPath + "/" + this.getId() + ".csv";
-        new Writer();
-        Writer.makeDir(dirPath);
-        Writer.writeToClientsCSV(path, head, clientInfo);
+        new ReaderWriter();
+        ReaderWriter.makeDir(dirPath);
+        ReaderWriter.writeToClientsCSV(path, head, clientInfo);
     }
 
     private void sendInfoToClientsCSV() {
@@ -101,7 +101,7 @@ class NewClient extends Client{
                 String.valueOf(this.getWeight()), String.valueOf(this.getBMI()));
         String clientInfo = String.join(",", newClientInfoList);
         String path = "All_Clients/Clients.csv";
-        new Writer();
-        Writer.writeToClientsCSV(path, head, clientInfo);
+        new ReaderWriter();
+        ReaderWriter.writeToClientsCSV(path, head, clientInfo);
     }
 }
