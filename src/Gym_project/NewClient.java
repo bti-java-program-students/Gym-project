@@ -1,6 +1,5 @@
 package Gym_project;
 
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class NewClient extends Client {
+class NewClient extends Client{
 
     private static boolean isValidEmail(String eMail) {
         String eMailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
@@ -29,7 +28,8 @@ class NewClient extends Client {
     }
 
     void newClientRegitration() {
-        try (Scanner scan = new Scanner(System.in, "UTF-8")) {
+        try {
+            Scanner scan = new Scanner(System.in, "UTF-8");
             System.out.println("Įveskite vardą: ");
             this.setName(scan.next());
             while (!this.getName().matches("[a-zA-Z ĄąČčĘęĖėĮįŠšŲųŪūŽž]+")) {
@@ -64,6 +64,7 @@ class NewClient extends Client {
             int idd = (int) (Math.random() * 10000);
             this.setId(MessageFormat.format("{0}{1}{2}", this.getName().charAt(0), this.getSurname().charAt(0), Integer.toString(idd)));
             System.out.println("Jūsų ID: " + this.getId() + " ,prašome jį išsisaugoti");
+
             sendInfoToClientsCSV();
             sendInfoToPersonalCSV();
 
@@ -73,7 +74,7 @@ class NewClient extends Client {
         }
     }
 
-    private void sendInfoToPersonalCSV() throws IOException {
+    private void sendInfoToPersonalCSV() {
         List<String> headList = Arrays.asList(
                 "ID", "DATE", "HEIGHT", "WEIGHT", "BMI", "Time");
         String head = String.join(",", headList);
@@ -82,12 +83,14 @@ class NewClient extends Client {
                 this.getId(), new LocalDate().getLocalDate(), String.valueOf(this.getHeight()),
                 String.valueOf(this.getWeight()), String.valueOf(this.getBMI()), time);
         String clientInfo = String.join(",", newClientInfoList);
-        String path = this.getId() + ".csv";
+        String dirPath = "All_Clients/" + this.getId();
+        String path = dirPath + "/" + this.getId() + ".csv";
         new Writer();
+        Writer.makeDir(dirPath);
         Writer.writeToClientsCSV(path, head, clientInfo);
     }
 
-    private void sendInfoToClientsCSV() throws IOException {
+    private void sendInfoToClientsCSV() {
         List<String> headList = Arrays.asList(
                 "ID", "DATE", "NAME", "SURNAME", "PHONE", "EMAIL",
                 "HEIGHT", "WEIGHT", "BMI", "TIME");
@@ -97,7 +100,7 @@ class NewClient extends Client {
                 this.getPhone(), this.getEmail(), String.valueOf(this.getHeight()),
                 String.valueOf(this.getWeight()), String.valueOf(this.getBMI()));
         String clientInfo = String.join(",", newClientInfoList);
-        String path = "Clients.csv";
+        String path = "All_Clients/Clients.csv";
         new Writer();
         Writer.writeToClientsCSV(path, head, clientInfo);
     }

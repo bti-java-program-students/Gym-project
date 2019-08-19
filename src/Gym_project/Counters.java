@@ -2,10 +2,9 @@ package Gym_project;
 
 import java.text.DecimalFormat;
 
-class Counters implements AbleToCountBMI {
+class Counters{
 
-    @Override
-    public double calcBMI(double height, double weight) {
+ public double calcBMI(double height, double weight) {
         DecimalFormat df = new DecimalFormat("##.##");
         double BMI = 10000 * weight / (height * height);
         BMI = Double.parseDouble(df.format(BMI));
