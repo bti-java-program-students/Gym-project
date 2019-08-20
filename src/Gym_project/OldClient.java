@@ -2,26 +2,25 @@ package Gym_project;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 class OldClient extends Client{
 
     void gymTracker() {
         try {
-            Scanner scanner = new Scanner(System.in);
+
             System.out.println("Įrašykite kliento id: ");
-            this.setId(scanner.next());
+            this.setId(Input_Scanner.stringInput());
             String dirPath = "All_Clients/" + this.getId();
             System.out.println("dirpath " + dirPath);
             String path = dirPath + "/" + this.getId() + ".csv";
             System.out.println("path " + path);
             System.out.println("Įrašykite kiek laiko sportavote, min: ");
-            int time = scanner.nextInt();
+            int time = Input_Scanner.intInput();
             String height;
             height = new ReaderWriter().getClientHeight(path,getId());
             this.setHeight(Double.parseDouble(height));
             System.out.println("Įrašykite svorį: ");
-            this.setWeight(scanner.nextDouble());
+            this.setWeight(Input_Scanner.doubleInput());
             double BMI;
             BMI = new BMICalculator().calcBMI(this.getHeight(), this.getWeight());
             this.setBMI(BMI);

@@ -5,9 +5,8 @@ import java.text.DecimalFormat;
 class BMICalculator {
 
  public double calcBMI(double height, double weight) {
-        DecimalFormat df = new DecimalFormat("##.##");
         double BMI = 10000 * weight / (height * height);
-        BMI = Double.parseDouble(df.format(BMI));
+     BMI = (double)Math.round (BMI * 100d)/100d;
         System.out.println("Kliento KMI - " + BMI);
         if (BMI <= 18.5) {
             System.out.println("KMI yra mažesnis už normą, " +
